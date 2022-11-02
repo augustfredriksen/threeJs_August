@@ -8,16 +8,10 @@ const path = require('path')
 // undermappe med samme navn som hthml-fila.
 // PASS PÅ REKKEFØLGEN (1-1 mellom pages og pagesDir):
 const pages = [
-    "start", "demo0", "demo1", "demo2", "demo3", "demo4",
-    "shapes", "drone", "arm", "boxman", "light1", "light2shadows", "mousecamera", "geometries1", "materials1", "materials2environmentmap",
-    "terrain1", "terrain2", "gravitation1", "lineconnection1", "collision1",
-    "ammoShapes1","ammoShapes2","ammoCollisions","ammoForces","ammoConstraints"
+    "start", "oppgave1", "oppgave2", "oppgave3"
 ];
 const pagesDir = [
-    "", "del1", "del1", "del1", "del1", "del1",
-    "del2", "del2", "del2", "del2", "del2", "del2", "del2", "del2", "del2", "del2",
-    "del3", "del3", "del3", "del3","del3",
-    "del4","del4","del4","del4","del4"
+    "", "modul6", "modul6", "modul6"
 ];
 
 module.exports = {

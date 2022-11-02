@@ -9,8 +9,10 @@ npm install
 
 # Start lokal http-server på localhost:8080
 npm run dev
+/dist/start/start.html
 
 # Bygges for produksjon slik (resultat finner du i /dist-mappa)
 npm run build
+
 ```
 ### Webpack-oppsettet er basert på kodeeksempler fra https://threejs-journey.com/
