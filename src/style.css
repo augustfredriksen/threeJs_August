@@ -18,6 +18,37 @@ body {
 }
 .ui {
     position: absolute;
+    color: var(--primary);
+    padding: 4rem;
+    top: 5rem;
+}
+
+.ui h1 {
+    color: var(--primary);
+    font-size: 4vmin;
+}
+
+.ui p {
+    color: var(--primary);
+    font-size: 1.3vmin;
+}
+
+.ui ul {
+    position: relative;
+    left: -2rem;
+    margin-right: 1rem;
+    list-style-type: none;
+    color: var(--secondary);
+}
+
+.ui li {
+    margin: 0;
+    font-weight: 600;
+}
+
+.ui li:hover {
+    color: var(--primary);
+    margin: 0;
 }
 
 .navbar {
