@@ -21,19 +21,26 @@ body {
     color: var(--primary);
     padding: 4rem;
     top: 5rem;
+    text-shadow:
+    -1px -1px 0 #000,  
+     1px -1px 0 #000,
+    -1px  1px 0 #000,
+     1px  1px 0 #000;
 }
 
 .ui h1 {
+    
     color: var(--primary);
     font-size: 4vmin;
 }
 
 .ui p {
     color: var(--primary);
-    font-size: 1.3vmin;
+    font-size: 2vmin;
 }
 
 .ui ul {
+    font-size: 2vmin;
     position: relative;
     left: -2rem;
     margin-right: 1rem;
