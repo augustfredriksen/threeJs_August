@@ -1,5 +1,12 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
+
+:root {
+    --primary: #9dbeb7;
+    --secondary: #e73213;
+}
+
 canvas {
-    border: 2px solid black;
     background-color: black;
 }
 video {
@@ -8,15 +15,113 @@ video {
 body {
     overflow: hidden;
     margin: 0;
-    background: #2196F3;
 }
 .ui {
     position: absolute;
 }
 
-h1 {
-    
+.navbar {
+    padding: 2rem;
 }
+
+.navbar-brand {
+    font-family: 'Poppins', sans-serif;
+    font-size: 2vmin;
+    font-weight: 600;
+    margin: 0;
+    color: rgb(0, 0, 0);
+}
+
+.navbar-brand:hover {
+    color: var(--secondary);
+}
+
+.nav-link {
+    font-family: 'Poppins', sans-serif;
+    margin-right: 2rem;
+    color: var(--secondary);
+}
+
+
+
+.nav-link::before {
+    margin-right: .5rem;
+    content: "//";
+}
+
+.nav-link:hover {
+    color: var(--primary);
+}
+
+.nav-link:focus {
+    color: var(--primary);
+}
+
+
+  @font-face {
+	font-family: "GalanoGrotesqueW00-Bold";
+	src: url("https://static2.pickjb.com/assets/fonts/GalanoGrotesqueW00-Bold.eot");
+	src: local("☺︎"), local("Galano Grotesque W00 Bold"), local("GalanoGrotesqueW00-Bold"), url("https://static2.pickjb.com/assets/fonts/GalanoGrotesqueW00-Bold.eot?#iefix") format("embedded-opentype"), url("https://static2.pickjb.com/assets/fonts/GalanoGrotesqueW00-Bold.woff2") format("woff2"), url("https://static2.pickjb.com/assets/fonts/GalanoGrotesqueW00-Bold.woff") format("woff"), url("https://static2.pickjb.com/assets/fonts/GalanoGrotesqueW00-Bold.ttf") format("truetype"), url("https://static2.pickjb.com/assets/fonts/GalanoGrotesqueW00-Bold.svg#GalanoGrotesqueW00-Bold") format("svg");
+	font-weight: 800;
+	font-style: normal;
+	font-display: swap;
+}
+
+
+
+.logo {
+	position: absolute;
+	z-index: 1;
+	top: 0;
+	left: 0;
+	display: block;
+	width: 6vmax;
+	min-width: 56px;
+	padding: 2em;
+}
+
+.waves {
+	position: absolute;
+	top: 0;
+	left: 0;
+	bottom: 0;
+	display: block;
+	min-width: 100%;
+	min-height: 70%;
+	margin: auto 0;
+}
+
+img, svg {
+	pointer-events: none;
+}
+
+.header {
+    display: flex;
+    height: 80vh;
+    width: 100vw;
+    flex-wrap: wrap;
+    flex-direction: column;
+    flex: 1;
+    align-items: center;
+    justify-content: center;
+    background-image: radial-gradient(circle, #333333, #222222);
+  }
+  
+.header h1 {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    font-family: 'Sarpanch', sans-serif;
+    font-size: 20vmin;
+    color: #efe6d5;
+    text-shadow: 1vmin 1vmin 0 #9dbeb7, -1vmin -1vmin 0 #e73213;
+    transition: transform 0.1s;
+  }
+
+.header h1:hover {
+    transform: scale(1.05);
+}
+
 
 .button {
     background-color: #4CAF50; /* Green */
