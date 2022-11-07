@@ -2,6 +2,7 @@ import "../../style.css";
 //Globale variabler:
 import * as THREE from "three";
 import { TrackballControls } from "three/examples/jsm/controls/TrackballControls";
+import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
 
 //Globale variabler:
 let g_scene, g_renderer, g_camera, g_clock, g_controls;
@@ -35,7 +36,7 @@ export async function main() {
   g_camera.position.z = 3;
 
   // TrackballControls:
-  g_controls = new TrackballControls(g_camera, g_renderer.domElement);
+  g_controls = new OrbitControls(g_camera, g_renderer.domElement);
   g_controls.addEventListener("change", renderScene);
 
   // Klokke for animasjon
@@ -66,7 +67,7 @@ async function addSceneObjects() {
 
   // KUBE
   let gCube = new THREE.BoxGeometry(1.5, 1.5, 1.5);
-  let mCube = new THREE.MeshPhongMaterial({ map: textureObject });
+  let mCube = new THREE.MeshPhongMaterial({ map: textureObject, transparent: true });
   let meshCube = new THREE.Mesh(gCube, mCube);
   meshCube.name = "myCube";
   meshCube.translateZ(-3);
@@ -82,7 +83,7 @@ async function addSceneObjects() {
   g_scene.add(meshOctahedron);
 
   // TORUS
-  let gTorus = new THREE.TorusGeometry(1.5);
+  let gTorus = new THREE.TorusGeometry(1.5, 0.5, 50, 50);
   let mTorus = new THREE.MeshPhongMaterial({ map: textureObject });
   let meshTorus = new THREE.Mesh(gTorus, mTorus);
   meshTorus.rotation.x = Math.PI / 2;

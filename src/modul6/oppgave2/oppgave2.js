@@ -2,6 +2,7 @@ import "../../style.css";
 //Threejs-biblioteket (importert via package.json):
 import * as THREE from "three";
 import { TrackballControls } from "three/examples/jsm/controls/TrackballControls";
+import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
 import { coffeeCup } from "./coffeeCupHelper.js";
 //Globale variabler:
 let g_scene, g_renderer, g_camera, g_clock, g_controls;
@@ -44,7 +45,7 @@ export async function main() {
   g_camera.lookAt(target);
 
   // TrackballControls:
-  g_controls = new TrackballControls(g_camera, g_renderer.domElement);
+  g_controls = new OrbitControls(g_camera, g_renderer.domElement);
   g_controls.addEventListener("change", renderScene);
 
   // Klokke for animasjon

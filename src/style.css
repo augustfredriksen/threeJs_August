@@ -17,6 +17,7 @@ body {
     margin: 0;
 }
 .ui {
+    z-index: 9999;
     position: absolute;
     color: var(--primary);
     padding: 4rem;
@@ -160,6 +161,10 @@ img, svg {
     transform: scale(1.05);
 }
 
+.header a {
+    text-decoration: none;
+}
+
 
 .button {
     background-color: #4CAF50; /* Green */
@@ -243,3 +248,16 @@ label {
 input, label {
     margin: .4rem 0;
 }
+
+#scene-container {
+    /* tell our scene container to take up the full page */
+    position: relative;
+    min-width: 100vw;
+    min-height: 100vh;
+  
+    /*
+      Set the container's background color to the same as the scene's
+      background to prevent flashing on load
+    */
+    background-color: skyblue;
+  }

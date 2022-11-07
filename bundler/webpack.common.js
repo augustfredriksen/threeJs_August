@@ -8,10 +8,10 @@ const path = require('path')
 // undermappe med samme navn som hthml-fila.
 // PASS PÅ REKKEFØLGEN (1-1 mellom pages og pagesDir):
 const pages = [
-    "start", "oppgave1", "oppgave2", "oppgave3"
+    "start", "oppgave1", "oppgave2", "oppgave3", "togOOP", "oblig3"
 ];
 const pagesDir = [
-    "", "modul6", "modul6", "modul6"
+    "", "modul6", "modul6", "modul6", "modul6", "",
 ];
 
 module.exports = {
