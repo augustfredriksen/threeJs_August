@@ -1,7 +1,7 @@
 import * as THREE from "three";
 
 function createGeometries() {
-  const plane = new THREE.PlaneGeometry(100, 100);
+  const plane = new THREE.PlaneGeometry(20, 20);
 
   return {plane};
 }

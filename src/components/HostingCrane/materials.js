@@ -92,7 +92,9 @@ function createMaterials() {
 		map: tile,
 	});
 
-	return { beltRight, beltLeft, metalBody, environmentMapTexture, standardMaterial, standardMaterial2, standardMaterial3, metal2, metal3, tileBody, bodyMaterial };
+	const lineMaterial = new THREE.LineBasicMaterial({ color: 0x000000 })
+
+	return { beltRight, beltLeft, metalBody, environmentMapTexture, standardMaterial, standardMaterial2, standardMaterial3, metal2, metal3, tileBody, bodyMaterial, lineMaterial };
 }
 
 export { createMaterials };

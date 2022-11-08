@@ -15,7 +15,9 @@ class HoistingCraneMast extends THREE.Group {
       this.meshes.topMast,
       this.meshes.topOfMast,
       this.meshes.mastDetailGroup,
-      this.meshes.mastSupport,
+      this.meshes.hook,
+      this.meshes.line,
+      this.meshes.line2,
     );
   }
 

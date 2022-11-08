@@ -33,6 +33,14 @@ class HoistingCraneMiddle extends THREE.Group {
       this.meshes.frontMirror,
       this.meshes.halfMirror,
       this.meshes.mastSphere,
+      this.meshes.lineGroup,
+      this.meshes.headLightGroup,
+      this.meshes.lightBulbTarget,
+      this.meshes.wireSupport,
+      this.meshes.wireSupport2,
+      this.meshes.wireSupportDisc,
+      this.meshes.wireSupportCylinder,
+      this.meshes.topLine,
     );
     
   }

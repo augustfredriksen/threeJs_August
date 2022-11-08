@@ -81,7 +81,7 @@ function createMeshes() {
 	const topMast = bottomMast.clone();
 	topMast.rotation.z = Math.PI;
 	topMast.position.y =
-		mastSphere.position.y + middlePillar.geometry.parameters.height / 2 + middlePillar.geometry.parameters.height;
+		mastSphere.position.y + middlePillar.geometry.parameters.height / 2 + middlePillar.geometry.parameters.height - bottomPillar.geometry.parameters.height*0.5;
 
 	const topOfMast = new THREE.Mesh(geometries.topOfMast, materials.metal3);
 	topOfMast.position.y =
@@ -126,6 +126,7 @@ function createMeshes() {
 		bottomPillar.position.z - pillarAngle * 2 + bottomPillar.geometry.parameters.radiusBottom / 2;
 
 	const mastDetailSphere3 = mastDetailSphere.clone();
+	mastDetailSphere3.name = "DetailSphere";
 	mastDetailSphere3.position.z =
 		bottomPillar.position.z + pillarAngle * 2 - bottomPillar.geometry.parameters.radiusBottom / 2;
 
@@ -168,6 +169,12 @@ function createMeshes() {
 	const mastDetail7 = mastDetail6.clone();
 	mastDetail7.position.y += 1;
 
+	const mastDetail8 = mastDetail7.clone();
+	mastDetail8.position.y += 1;
+
+	const mastDetail9 = mastDetail8.clone();
+	mastDetail9.position.y += 1;
+
 	const mastDetailGroup = new THREE.Group();
 	mastDetailGroup.add(mastDetail);
 	mastDetailGroup.add(mastDetail2);
@@ -176,13 +183,45 @@ function createMeshes() {
 	mastDetailGroup.add(mastDetail5);
 	mastDetailGroup.add(mastDetail6);
 	mastDetailGroup.add(mastDetail7);
+	mastDetailGroup.add(mastDetail8);
+	mastDetailGroup.add(mastDetail9);
 
 	const mastSupport = new THREE.Object3D();
 	const mastSupportMesh = new THREE.Mesh(geometries.mastSupport, materials.metal3);
 	mastSupportMesh.castShadow = true;
 	mastSupportMesh.receiveShadow = true;
-	mastSupportMesh.position.y = 4;
+	mastSupportMesh.position.y = mastSphere.position.y;
+	mastSupportMesh.position.z = mastSphere.position.z;
+	mastSupportMesh.position.x = -mastSphere.position.x
 	mastSupport.add(mastSupportMesh);
+
+	const hook = new THREE.Mesh(geometries.hook, materials.metal3);
+	hook.position.x = middleMeshes.cranePlatform.geometry.parameters.width;
+	hook.position.y = middlePillar.geometry.parameters.height;
+	hook.position.z = mastSphere.position.z;
+	hook.receiveShadow = true;
+	hook.castShadow = true;
+	hook.rotation.z = Math.PI/5;
+	//hook.rotation.z = -Math.PI/2;
+
+	const points = [];
+	points.push(topOfMast.position);
+	points.push(hook.position);
+	const lineGeometry = new THREE.BufferGeometry().setFromPoints(points);
+	const line = new THREE.Line(lineGeometry, materials.lineMaterial);
+	line.receiveShadow = true;
+	line.castShadow = true;
+
+	const points2 = [];
+	points2.push(topOfMast.position);
+	points2.push(middleMeshes.wireSupportDisc.position);
+	const lineGeometry2 = new THREE.BufferGeometry().setFromPoints(points);
+	const line2 = new THREE.Line(lineGeometry2, materials.lineMaterial);
+	line2.receiveShadow = true;
+	line2.castShadow = true;
+
+
+
 
 	return {
 		bottomMast,
@@ -190,7 +229,9 @@ function createMeshes() {
 		topMast,
 		topOfMast,
 		mastDetailGroup,
-		mastSupport,
+		hook,
+		line,
+		line2,
 	};
 }
 

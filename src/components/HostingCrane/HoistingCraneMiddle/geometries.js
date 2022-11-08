@@ -17,6 +17,10 @@ function createGeometries() {
 	const frontMirror = new PlaneGeometry(1, 1.8);
 	const halfMirror = new PlaneGeometry(1.25, 0.725);
 	const mastSphere = new THREE.SphereGeometry(0.3, 300, 300);
+  const lightBulb = new THREE.CylinderGeometry(.1, .1, .1, 10);
+  const lightBulbTarget = new THREE.BoxGeometry(1, 1, 1);
+  const wireSupport = new THREE.BoxGeometry(5, .2, .1);
+  const topLine = new THREE.BufferGeometry();
 
 
 	return {
@@ -34,6 +38,10 @@ function createGeometries() {
 		frontMirror,
 		halfMirror,
     mastSphere,
+    lightBulb,
+    lightBulbTarget,
+    wireSupport,
+    topLine,
 	};
 }
 

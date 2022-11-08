@@ -4,11 +4,13 @@ import { createGeometries } from "./geometries.js";
 import { createMaterials } from "../materials.js";
 import { createMeshes as createBottomMeshes }  from '../HoistingCraneBottom/meshes.js';
 import { Vector3 } from "three";
+import { createLights } from "../../lights.js"
 
 function createMeshes() {
 	const geometries = createGeometries();
 	const materials = createMaterials();
 	const bottomMeshes = createBottomMeshes();
+	const lights = createLights();
 
 	const rotationBase = new THREE.Mesh(geometries.rotationBase, materials.metal2);
 	rotationBase.position.y = bottomMeshes.bottomBase.position.y + bottomMeshes.bottomBase.geometry.parameters.height;
@@ -81,12 +83,12 @@ function createMeshes() {
 	const craneWinchPillar = new THREE.Mesh(geometries.craneWinchPillar, materials.metal3);
 	craneWinchPillar.position.x = - cranePlatform.geometry.parameters.width/2.2;
 	craneWinchPillar.position.y = cranePlatform.position.y + cranePlatform.geometry.parameters.height/2;
-	craneWinchPillar.position.z = cranePlatform.position.z/1.20;
+	craneWinchPillar.position.z = cranePlatform.position.z + 0.5;
 	craneWinchPillar.receiveShadow = true;
 	craneWinchPillar.castShadow = true;
 
 	const craneWinchPillar2 = craneWinchPillar.clone();
-	craneWinchPillar2.position.z = cranePlatform.position.z/0.80;
+	craneWinchPillar2.position.z = cranePlatform.position.z - 0.5;
 
 	const pillarCylinder = new THREE.Mesh(geometries.pillarCylinder, materials.metal3);
 	pillarCylinder.position.x = craneWinchPillar.position.x;
@@ -141,6 +143,94 @@ function createMeshes() {
 	mastSphere.receiveShadow = true;
 	mastSphere.castShadow = true;
 
+	const lightBulb = new THREE.Mesh(geometries.lightBulb, materials.standardMaterial3);
+	lightBulb.rotation.z = Math.PI/3;
+	const lightBulb2 = lightBulb.clone();
+	lightBulb2.position.z = -craneHouse.geometry.parameters.depth;
+
+	const lightBulbTarget = new THREE.Mesh(geometries.lightBulbTarget, materials.standardMaterial3);
+	lightBulbTarget.position.set(10, 0, cranePlatform.geometry.parameters.depth/2);
+	lightBulbTarget.visible = false;
+
+	const headLight = new THREE.SpotLight(0xffffff, 1, 20, Math.PI*0.2, 0, 0);
+	headLight.visible = true;
+	headLight.castShadow = true;
+	headLight.shadow.camera.near = .1;
+	headLight.shadow.camera.far = 30;
+	headLight.target = lightBulbTarget;
+	headLight.shadow.mapSize = new THREE.Vector2(1024, 1024);
+
+/* 	const spotFolder = lights.lilGui.addFolder("HeadLights");
+	spotFolder.add(headLight, 'visible').name("On/Off").onChange(value => {
+		headLightLightHelper.visible = value;
+		headLightLightCameraHelper.visible = value;
+	})
+	spotFolder.add(headLight, 'intensity').min(0).max(5).step(0.01).name("Intensity");
+	spotFolder.addColor(headLight, 'color').name("Color"); */
+	
+
+	const headLightLightHelper = new THREE.SpotLightHelper(headLight, 5, 0xff0000);
+	const headLightLightCameraHelper = new THREE.CameraHelper(headLight.shadow.camera);
+
+	const headLightGroup = new THREE.Group();
+	headLightGroup.position.x = craneHouse.position.x + craneHouse.geometry.parameters.width/2;
+	headLightGroup.position.y = craneHouse.position.y + craneHouse.geometry.parameters.height/2;
+	headLightGroup.position.z = craneHouse.position.z + craneHouse.geometry.parameters.depth/2;
+	headLightGroup.add(lightBulb);
+	headLightGroup.add(lightBulb2);
+	headLightGroup.add(headLight);
+
+	const wireSupport = new THREE.Mesh(geometries.wireSupport, materials.metal3);
+	wireSupport.position.x = -cranePlatform.geometry.parameters.width/4;
+	wireSupport.position.y = cranePlatform.position.y + wireSupport.geometry.parameters.width/2;
+	wireSupport.position.z = craneWinchPillar.position.z;
+	wireSupport.rotation.z = -Math.PI/3;
+	wireSupport.receiveShadow = true;
+	wireSupport.castShadow = true;
+
+	const wireSupport2 = wireSupport.clone();
+	wireSupport2.position.z = craneWinchPillar2.position.z;
+
+	const wireSupportDisc = wireDisc.clone();
+	wireSupportDisc.position.x = wireDisc.position.x;
+	wireSupportDisc.position.y = wireSupport.position.y + wireSupport.geometry.parameters.width/2 - wireSupportDisc.geometry.parameters.heightSegments/2.5;
+	wireSupportDisc.position.z = cranePlatform.position.z;
+
+	const wireSupportCylinder = pillarCylinder.clone();
+	wireSupportCylinder.position.y = wireSupportDisc.position.y;
+
+	const points = [];
+	points.push(wireDisc.position);
+	points.push(wireSupportDisc.position);
+	const lineGeometry = new THREE.BufferGeometry().setFromPoints(points);
+	const lineGeometry2 = new THREE.BufferGeometry().setFromPoints(points);
+	const line = new THREE.Line(lineGeometry, materials.lineMaterial);
+	line.receiveShadow = true;
+	line.castShadow = true;
+
+	const line2 = line.clone();
+	line2.position.z += 0.05;
+
+	const line3 = line2.clone();
+	line3.position.z += 0.05;
+
+	const line4 = line.clone();
+	line4.position.z -= 0.05;
+
+	const line5 = line4.clone();
+	line5.position.z -= 0.05;
+
+	const lineGroup = new THREE.Group();
+	lineGroup.add(line);
+	lineGroup.add(line2);
+	lineGroup.add(line3);
+	lineGroup.add(line4);
+	lineGroup.add(line5);
+
+	const topLine = new THREE.Line(lineGeometry2, materials.lineMaterial);
+
+
+
 
 	return {
         rotationBase,
@@ -166,6 +256,14 @@ function createMeshes() {
 		frontMirror,
 		halfMirror,
 		mastSphere,
+		lineGroup,
+		headLightGroup,
+		lightBulbTarget,
+		wireSupport,
+		wireSupport2,
+		wireSupportDisc,
+		wireSupportCylinder,
+		topLine,
 	};
 }
 
