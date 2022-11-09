@@ -22,7 +22,7 @@ module.exports = merge(
         {
             host: 'local-ip',
             port: portFinderSync.getPort(8080),
-            open: 'http://158.39.125.156:8080/dist/start/start.html', // Originally open: true
+            open:['/dist/start/start.html'],  //open: 'http://158.39.125.156:8080/dist/start/start.html', // Originally open: true
             https: false,
             allowedHosts: 'all',
             hot: false,

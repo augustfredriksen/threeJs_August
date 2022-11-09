@@ -4,7 +4,7 @@ function createScene() {
   const materials = createMaterials();
   const scene = new THREE.Scene();
 
-  //scene.background = materials.environmentMapTexture;
+  scene.background = materials.environmentMapTexture;
 
   return scene;
 }
