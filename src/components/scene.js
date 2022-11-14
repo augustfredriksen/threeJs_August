@@ -3,8 +3,9 @@ import { createMaterials } from "./HostingCrane/materials.js";
 function createScene() {
   const materials = createMaterials();
   const scene = new THREE.Scene();
+  const scene2 = new THREE.Scene();
 
-  scene.background = materials.environmentMapTexture;
+  scene.background = new THREE.Color("darksalmon");
 
   return scene;
 }
