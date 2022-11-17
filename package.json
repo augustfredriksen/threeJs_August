@@ -21,6 +21,8 @@
         "mini-css-extract-plugin": "^2.6.0",
         "portfinder-sync": "0.0.2",
         "raw-loader": "^4.0.2",
+        "stats": "^1.0.0",
+        "stats-js": "^1.0.1",
         "style-loader": "^3.3.1",
         "three": "^0.145.0",
         "webpack": "^5.72.0",

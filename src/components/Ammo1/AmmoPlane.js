@@ -1,5 +1,7 @@
 import * as THREE from "three";
 
+let g_xzPlaneSideLength=100;
+
 function createAmmoXZPlane(xzPlaneSideLength) {
 	const mass=0;
 	const position = {x: 0, y: 0, z: 0};
